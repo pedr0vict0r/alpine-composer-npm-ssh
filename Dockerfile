@@ -23,9 +23,7 @@ RUN apk add --no-cache \
     docker-php-ext-install -j${NPROC} gd && \
     apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev \
     && docker-php-ext-configure zip \
-    --with-libzip=/usr/include \
+    --with-libzip \
     && docker-php-ext-install zip
 
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-RUN apk add --no-cache libzip-dev && docker-php-ext-configure zip --with-libzip=/usr/include && docker-php-ext-install zip
