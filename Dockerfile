@@ -6,6 +6,7 @@ RUN apk add --update nodejs nodejs-npm
 RUN apk add --no-cache \
     zip \
     unzip \
+    libzip-dev \
     openssh-client \
     ca-certificates \
     bash \
@@ -19,7 +20,12 @@ RUN apk add --no-cache \
     --with-freetype \
     --with-jpeg \ 
     && NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
-    docker-php-ext-install -j${NPROC} gd zip && \
-    apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev
+    docker-php-ext-install -j${NPROC} gd && \
+    apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev \
+    && docker-php-ext-configure zip \
+    --with-libzip=/usr/include \
+    && docker-php-ext-install zip
 
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN apk add --no-cache libzip-dev && docker-php-ext-configure zip --with-libzip=/usr/include && docker-php-ext-install zip
