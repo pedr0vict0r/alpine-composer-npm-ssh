@@ -19,7 +19,7 @@ RUN apk add --no-cache \
     --with-freetype \
     --with-jpeg \ 
     && NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
-    docker-php-ext-install -j${NPROC} gd && \
+    docker-php-ext-install -j${NPROC} gd zip && \
     apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev
 
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
