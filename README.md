@@ -1,10 +1,12 @@
-## PHP & Composer & NPM
+## Composer & NPM & SSH-Client
 
-### Image just to build your project's composer and npm libraries before deploy.
+### Image to build your project with php and js libraries and deploy it with ssh, or do whatever you want. 
 
 With:
-- PHP 7.4
+- Alpine 3.12
+- PHP 7.4.10
 - Composer (latest)
-- NPM (Node 12.x)
+- NPM (latest)
+- SSH-Client
 
 Your welcome!
