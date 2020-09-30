@@ -8,14 +8,14 @@ RUN apt-get update && apt-get install -y \
     git
 
 # install library docker
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-png \
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd zip
 
 # install composer
 RUN apt-get update && apt-get -y --no-install-recommends install git \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
-    && rm -rf /var/lib/apt/lists/* \
-    && composer global require hirak/prestissimo
+    && rm -rf /var/lib/apt/lists/*
+    # && composer global require hirak/prestissimo
 
 # install npm
 RUN apt-get install -y curl \
