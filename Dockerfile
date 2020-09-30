@@ -4,6 +4,11 @@ RUN apk update && apk upgrade
 RUN apk add --update nodejs nodejs-npm
 
 RUN apk add --no-cache \
+    zip \
+    unzip \
+    openssh-client \
+    ca-certificates \
+    bash \
     freetype \
     libpng \
     libjpeg-turbo \
